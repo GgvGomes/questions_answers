@@ -15,6 +15,7 @@
     "@tanstack/react-table": "^8.10.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "fastify": "^4.23.2",
     "lucide-react": "^0.282.0",
     "next": "latest",
     "react": "latest",
