@@ -31,6 +31,9 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground w-full overflow-x-hidden;
+  }
+  html{
+    @apply w-full overflow-x-hidden;
   }
 }
