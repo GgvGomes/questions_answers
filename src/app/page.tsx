@@ -21,7 +21,7 @@ export default function Home() {
       // max-md:items-start max-md:mt-4"
     >
       <div
-        className="w-[40rem] flex flex-wrap space-y-6 overflow-x-hidden
+        className="w-[40rem] flex flex-wrap space-y-6 overflow-x-hidden px-1
           max-md:w-80 max-md:space-y-3"
         //max-md:ml-8"
       >
@@ -29,14 +29,14 @@ export default function Home() {
           <h1
             className="
               text-5xl font-bold text-green-500 
-              max-md:text-2xl
+              max-md:text-4xl
             ">
             Congresso - Crer é Pensar
           </h1>
           <h2
             className="
                 text-2xl font-semibold text-green-500
-                max-md:text-sm
+                max-md:text-xl
               ">
             Faça uma pergunta
           </h2>
