@@ -16,13 +16,15 @@ import { Textarea } from "@/components/ui/textarea";
 export default function Home() {
   return (
     <div
-      className="min-h-screen w-full flex justify-center items-center overflow-x-hidden
-            max-md:justify-start "
+      className="min-h-screen w-full flex justify-center items-center overflow-x-hidden"
+      //max-md:justify-start "
       // max-md:items-start max-md:mt-4"
     >
       <div
         className="w-[40rem] flex flex-wrap space-y-6 overflow-x-hidden
-            max-md:w-60 max-md:ml-8 max-md:space-y-3">
+          max-md:w-80 max-md:space-y-3"
+        //max-md:ml-8"
+      >
         <div className="mb-20 text-center w-full max-sm:mb-4">
           <h1
             className="
