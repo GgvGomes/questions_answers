@@ -6,8 +6,10 @@ Oq vou fazer no app de perguntas:
 
 -> Uma tela de vizualizar as perguntas => Ficaram ordenadas da mais antiga p/ a mais nova
 	-> Poder filtrar 	
-		- Por pregador
 		- Por termo
+		- Por pregador
+		- Lida nao lida
+		- Anonima n anonima
 	-> Marcar como lida
 		- Ver alguns layouts
 			=> Colocar um olhinho quando n tiver sido lida

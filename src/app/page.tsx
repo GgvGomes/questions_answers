@@ -1,30 +1,24 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function Home() {
   return (
-    <div
-      className="min-h-screen w-full flex justify-center items-center overflow-x-hidden"
-      //max-md:justify-start "
-      // max-md:items-start max-md:mt-4"
-    >
+    <div className="min-h-screen w-full flex justify-center items-center overflow-x-hidden">
       <div
         className="w-[40rem] flex flex-wrap space-y-6 overflow-x-hidden px-1
-          max-md:w-80 max-md:space-y-3"
-        //max-md:ml-8"
-      >
+          max-md:w-80 max-md:space-y-3">
         <div className="mb-20 text-center w-full max-sm:mb-4">
           <h1
             className="
@@ -66,10 +60,10 @@ export default function Home() {
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value={"1"}>Todos</SelectItem>
-              <SelectItem value={"2"}>Mauro Henrique</SelectItem>
-              <SelectItem value={"3"}>Pastor Herley</SelectItem>
-              <SelectItem value={"4"}>Pastor Gustavo</SelectItem>
+              <SelectItem value={'1'}>Todos</SelectItem>
+              <SelectItem value={'2'}>Mauro Henrique</SelectItem>
+              <SelectItem value={'3'}>Pastor Herley</SelectItem>
+              <SelectItem value={'4'}>Pastor Gustavo</SelectItem>
             </SelectContent>
           </Select>
         </div>
