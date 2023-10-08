@@ -57,6 +57,8 @@ export default function Home() {
         <Card_Perguntas />
         <Card_Perguntas />
       </div>
+
+      <small className='ml-auto text-muted-foreground font-semibold'>Mostrando 4 de 4 perguntas</small>
     </div>
   );
 }
