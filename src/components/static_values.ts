@@ -1,0 +1,51 @@
+export const questions = [
+  {
+    data: '20/10 20:00',
+    transmitter: 'Anônimo',
+    reciver: 'Mauro Henrique',
+    viewed: false,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+  {
+    data: '20/10 20:00',
+    transmitter: 'Gabriel Gomes Vieira',
+    reciver: 'Todos',
+    viewed: false,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+  {
+    data: '20/10 20:00',
+    transmitter: 'Gabriel Gomes Vieira',
+    reciver: 'Pastor Herley',
+    viewed: false,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+  {
+    data: '20/10 20:00',
+    transmitter: 'Gabriel Gomes Vieira',
+    reciver: 'Pastor Gustavo',
+    viewed: true,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+  {
+    data: '20/10 20:00',
+    transmitter: 'Gabriel Gomes Vieira',
+    reciver: 'Mauro Henrique',
+    viewed: false,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+  {
+    data: '20/10 20:00',
+    transmitter: 'Gabriel Gomes Vieira',
+    reciver: 'Mauro Henrique',
+    viewed: false,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+  {
+    data: '20/10 20:00',
+    transmitter: 'Gabriel Gomes Vieira',
+    reciver: 'Mauro Henrique',
+    viewed: false,
+    question: 'Qual o momento que você decidiu virar cantor e ainda mais "gospel"',
+  },
+];

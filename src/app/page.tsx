@@ -62,8 +62,8 @@ export default function Home() {
             <SelectContent>
               <SelectItem value={'1'}>Todos</SelectItem>
               <SelectItem value={'2'}>Mauro Henrique</SelectItem>
-              <SelectItem value={'3'}>Pastor Herley</SelectItem>
               <SelectItem value={'4'}>Pastor Gustavo</SelectItem>
+              <SelectItem value={'3'}>Pastor Herley</SelectItem>
             </SelectContent>
           </Select>
         </div>
