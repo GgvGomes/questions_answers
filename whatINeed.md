@@ -27,3 +27,5 @@ Oq vou fazer no app de perguntas:
 	- Fastify
 
 => Ver a questão do consumo do backend como isso funcionará
+
+=> Depois fazer as animações
