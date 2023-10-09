@@ -4,5 +4,6 @@ import axios from "axios";
 
 // Utilizar as variaveis de ambiente do next para verificar o local
 export const api = axios.create({
-    baseURL: 'http://localhost:3333',
+    // baseURL: 'http://localhost:3333',
+    baseURL: process.env.BASE_URL,
 })
