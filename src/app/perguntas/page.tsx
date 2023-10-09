@@ -11,8 +11,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { api } from '@/data/axios';
 import { filterData } from '@/functions/filter';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export default function Home() {
   const classDivLabel = 'space-y-2 flex flex-wrap w-full ';
@@ -53,6 +54,14 @@ export default function Home() {
 
     return questionsFiltered;
   }, [termo, palestrante, status, anonimo, questions]);
+
+  const callApi = useCallback(() => {
+    console.log('callApi')
+    api.get('/prompts').then((res) => {
+      console.log(res.data);
+    });
+  }, []);
+  useEffect(() => callApi, []);
 
   return (
     <div className={classAllDiv}>

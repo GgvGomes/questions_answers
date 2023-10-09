@@ -21,11 +21,17 @@ Oq vou fazer no app de perguntas:
 	-> Ver se tem como gerar uma imagem da pergunta ou um pdf algo assim
 		=> Isso tbm é facil pro pessoal da mídia q vai ficar lá atras
 
+-------------------------------------------------------------
+
 => Usarei 
 	- ShadcnUI
 	- Prisma 
 	- Fastify
 
-=> Ver a questão do consumo do backend como isso funcionará
-
 => Depois fazer as animações
+
+=> Mudar o icone que fica lá em cima pro logo da igreja
+
+-------------------------------------------------------------
+
+=> Ver como vou rodar o backend junto
