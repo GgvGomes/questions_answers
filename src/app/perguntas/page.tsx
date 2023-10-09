@@ -28,33 +28,20 @@ export default function Home() {
 
   // Sempre ordenar da menor data p/ a maior
   const questionsMemo = useMemo(() => {
-    console.log(status);
-
     let questionsFiltered = filterData(questions, termo);
 
     let statusBoolean = false;
     if (status === '0') statusBoolean = false;
     else if (status === '1') statusBoolean = true;
 
-    // Arrumar o filtro
-    questionsFiltered = questionsFiltered.filter((item) => {
-      const filtroPalestrante = palestrante !== '' || item.reciver.includes(palestrante);
+    if(palestrante !== '') questionsFiltered = questionsFiltered.filter((item) => item.reciver.includes(palestrante));
 
-      // Verifique se status não está vazio e corresponde ao valor de status
-      const filtroStatus = status !== '' || item.viewed == statusBoolean;
+    if(status !== '') questionsFiltered = questionsFiltered.filter((item) => item.viewed == statusBoolean);
 
-      // Verifique se anonimo não está vazio e corresponde ao valor de anonimo
-      const filtroAnonimo =
-        anonimo !== ''
-          ? anonimo !== 'Todos'
-            ? item.transmitter == 'Anônimo'
-            : item.transmitter !== 'Anônimo'
-          : true;
-
-      if (palestrante === '' && status === '' && anonimo === '') return true;
-      // Retorne verdadeiro se pelo menos um dos filtros for verdadeiro (uso do operador OR)
-      return filtroPalestrante && filtroStatus && filtroAnonimo;
-    });
+    if(anonimo !== ''){
+      if(anonimo === '0') questionsFiltered = questionsFiltered.filter((item) => item.transmitter == 'Anônimo');
+      else if(anonimo === '1') questionsFiltered = questionsFiltered.filter((item) => item.transmitter !== 'Anônimo');
+    }
 
     // Data ordanation
     // questionsFiltered = questionsFiltered.sort((a, b) => {
@@ -88,7 +75,8 @@ export default function Home() {
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value={'Todos'}>Todos</SelectItem>
+              <SelectItem value={''}>Mostrar todas opções</SelectItem>
+              <SelectItem value={'Todos'}>Para todos</SelectItem>
               <SelectItem value={'Mauro Henrique'}>Mauro Henrique</SelectItem>
               <SelectItem value={'Pastor Gustavo'}>Pastor Gustavo</SelectItem>
               <SelectItem value={'Pastor Herley'}>Pastor Herley</SelectItem>
