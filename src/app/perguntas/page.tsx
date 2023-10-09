@@ -57,7 +57,7 @@ export default function Home() {
 
   const callApi = useCallback(() => {
     console.log('callApi')
-    api.get('/prompts').then((res) => {
+    api.get('/prompts').then((res:any) => {
       console.log(res.data);
     });
   }, []);
