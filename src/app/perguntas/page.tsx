@@ -84,7 +84,7 @@ export default function Home() {
 
     return questionsFiltered.map((item) => ({
       reciver: item.reciver.name,
-      // data: format(addHours(new Date(item.data), -3), 'dd/MM HH:mm'),
+      id: item.id,
       data: format(new Date(item.data), 'dd/MM HH:mm'),
       transmitter: item.transmitter,
       question: item.question,

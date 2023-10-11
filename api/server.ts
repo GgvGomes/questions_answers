@@ -3,6 +3,7 @@ import { fastifyCors } from "@fastify/cors";
 import { showAllQuestions } from "./routes/showAllQuestions";
 import { createQuestion } from "./routes/createQuestion";
 import { showallRecivers } from "./routes/showAllRecivers";
+import { changeViewQuestion } from "./routes/changeViewQuestion";
 
 const app = fastify();
 
@@ -14,6 +15,7 @@ app.register(fastifyCors, {
 app.register(showAllQuestions);
 app.register(createQuestion);
 app.register(showallRecivers);
+app.register(changeViewQuestion);
 
 app.listen({ port: 3333 }, (err, address) => {
   if (err) {

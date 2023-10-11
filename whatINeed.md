@@ -35,3 +35,5 @@ Oq vou fazer no app de perguntas:
 -------------------------------------------------------------
 
 => Ver como vou rodar o backend junto
+
+=> Colocar modal em vez de alert

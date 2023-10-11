@@ -38,7 +38,7 @@ export function Select_Recievers({ receiver, setReceiver }: SelectRecieversProps
 
       <SelectContent>
         {receivers?.map((item) => (
-          <SelectItem value={item.id}>{item.name}</SelectItem>
+          <SelectItem value={item.id} key={item.id}>{item.name}</SelectItem>
         ))}
       </SelectContent>
     </Select>

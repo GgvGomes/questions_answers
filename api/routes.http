@@ -7,6 +7,12 @@ GET http://localhost:3333/questions
 GET http://localhost:3333/recivers
 
 ### 
+POST http://localhost:3333/view/clnm01cbl0001ixk4xqza5m5a/true
+{
+    viewed: true
+}
+
+### 
 POST http://localhost:3333/question
 Content-Type: application/json
 

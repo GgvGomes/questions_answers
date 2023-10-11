@@ -1,8 +1,12 @@
+'use client';
+
 import { EyeIcon, LucideVerified, Copy } from 'lucide-react';
 import { Separator } from './ui/separator';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { api } from '@/data/axios';
 
 interface Question {
+  id: number;
   data: string;
   transmitter: string;
   reciver: string;
@@ -16,16 +20,28 @@ export function Card_Perguntas({
   reciver,
   question,
   viewed,
+  id,
 }: Question) {
   const [visualizado, setVisualizado] = useState(viewed);
-
-  useEffect(() => {
-    setVisualizado(viewed);
-  }, [viewed]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   };
+
+  const changeView = useCallback(
+    async (visualizado: boolean) => {
+      await api.post(`/view/${id}`, { viewed: visualizado }).then((res) => {
+        console.log(res.data);
+
+        alert('Visualização alterada com sucesso!');
+        setVisualizado(visualizado);
+      });
+    },
+    [setVisualizado, visualizado]
+  );
+  console.log(visualizado, viewed)
+
+  // const verif = visualizado ? true : viewed;
 
   return (
     <div className="border-solid border-[2px] border-zinc-600 w-full h-[28%] rounded-xl p-4">
@@ -42,14 +58,14 @@ export function Card_Perguntas({
         {visualizado ? (
           <LucideVerified
             size={32}
-            onClick={() => setVisualizado(!visualizado)}
+            onClick={() => changeView(!visualizado)}
             className="ml-auto cursor-pointer"
             color="green"
           />
         ) : (
           <EyeIcon
             size={32}
-            onClick={() => setVisualizado(!visualizado)}
+            onClick={() => changeView(!visualizado)}
             className="ml-auto cursor-pointer"
           />
         )}
