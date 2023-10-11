@@ -5,6 +5,6 @@ import axios from "axios";
 // Utilizar as variaveis de ambiente do next para verificar o local
 export const api = axios.create({
     // baseURL: 'http://localhost:3333',
-    baseURL: 'https://perguntas-congresso.vercel.app:3333',
+    baseURL: 'https://question-aswers-api.vercel.app/:3333',
     // baseURL: process.env.BASE_URL_API,
 })
