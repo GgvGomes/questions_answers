@@ -1,9 +1,9 @@
 'use client';
 
+import { api } from '@/data/axios';
+import { useCallback, useState } from 'react';
 import { EyeIcon, LucideVerified, Copy } from 'lucide-react';
 import { Separator } from './ui/separator';
-import { useCallback, useEffect, useState } from 'react';
-import { api } from '@/data/axios';
 
 interface Question {
   id: number;
@@ -24,9 +24,8 @@ export function Card_Perguntas({
 }: Question) {
   const [visualizado, setVisualizado] = useState(viewed);
 
-  const copyToClipboard = () => {
+  const copyToClipboard = () =>
     navigator.clipboard.writeText('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-  };
 
   const changeView = useCallback(
     async (visualizado: boolean) => {
@@ -39,9 +38,6 @@ export function Card_Perguntas({
     },
     [setVisualizado, visualizado]
   );
-  console.log(visualizado, viewed)
-
-  // const verif = visualizado ? true : viewed;
 
   return (
     <div className="border-solid border-[2px] border-zinc-600 w-full h-[28%] rounded-xl p-4">
