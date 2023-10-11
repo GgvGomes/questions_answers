@@ -21,7 +21,7 @@ export default function Home() {
     // Verificar se algum ta vazio
     // Tlvz colocar o formulario
 
-    const result = await api.post('/question', {
+    await api.post('/question', {
       transmitter,
       reciverId: receiver,
       question,
@@ -31,7 +31,7 @@ export default function Home() {
     setReceiver('clnlpooa20000ix74skqamv64');
     setQuestion('');
 
-    alert('Finalizado' + result.data);
+    alert('Sua pergunta foi enviada com sucesso!');
 
     setTimeout(() => {
       setDisabled(false);

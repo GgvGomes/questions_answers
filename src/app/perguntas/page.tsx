@@ -14,8 +14,9 @@ import {
 } from '@/components/ui/select';
 import { api } from '@/data/axios';
 import { filterData } from '@/functions/filter';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
+// subtrair 3h da data
 export default function Home() {
   const classDivLabel = 'space-y-2 flex flex-wrap w-full ';
   const classInputs = 'rounded-xl h-12';
