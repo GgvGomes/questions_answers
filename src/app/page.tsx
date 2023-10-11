@@ -1,24 +1,13 @@
 'use client';
 
+import { Select_Recievers } from '@/components/select_recievers';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { api } from '@/data/axios';
-import { useCallback, useEffect, useState } from 'react';
-
-interface Recivers {
-  name: string;
-  id: string;
-}
+import { useCallback, useState } from 'react';
 
 export default function Home() {
   const [transmitter, setTransmitter] = useState('');
@@ -26,9 +15,7 @@ export default function Home() {
   const [question, setQuestion] = useState('');
   const [disabled, setDisabled] = useState(false);
 
-  const [receivers, setReceivers] = useState<Recivers[]>([]);
-
-  const onSubmit = async () => {
+  const onSubmit = useCallback(async () => {
     setDisabled(true);
 
     // Verificar se algum ta vazio
@@ -41,23 +28,23 @@ export default function Home() {
     });
 
     setTransmitter('');
-    setReceiver('');
+    setReceiver('clnlpooa20000ix74skqamv64');
     setQuestion('');
 
     alert('Finalizado' + result.data);
 
-    setDisabled(false);
-  };
-
-  const getRecivers = useCallback(async () => {
-    const result = await api.get('/recivers');
-
-    setReceivers(result.data);
-  }, [setReceivers]);
-
-  useEffect(() => {
-    getRecivers();
-  }, []);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 500);
+  }, [
+    transmitter,
+    receiver,
+    question,
+    setDisabled,
+    setTransmitter,
+    setReceiver,
+    setQuestion,
+  ]);
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center overflow-x-hidden">
@@ -101,17 +88,7 @@ export default function Home() {
         <div className="space-y-2 flex flex-wrap w-full">
           <Label className="max-md:text-[12px]">Selecione para quem é a pergunta:</Label>
 
-          <Select onValueChange={(e) => setReceiver(e)} value={receiver}>
-            <SelectTrigger className="rounded-xl h-12 max-md:h-9 max-md:text-[10px]">
-              <SelectValue placeholder="Selecione uma opção" />
-            </SelectTrigger>
-
-            <SelectContent>
-              {receivers?.map((item) => (
-                <SelectItem value={item.id}>{item.name}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Select_Recievers receiver={receiver} setReceiver={setReceiver} />
         </div>
 
         <Separator />
@@ -129,12 +106,12 @@ export default function Home() {
         </div>
 
         <Button
-          // disabled={disabled}
+          disabled={disabled}
           onClick={onSubmit}
           variant="outline"
           className="rounded-xl h-12 ml-auto px-12 text-lg text-green-600
-                  max-md:h-10 max-md:px-8 max-md:text-sm">
-          Enviar
+                  max-md:h-10 max-md:px-8 max-md:text-sm transition-all">
+          {disabled ? 'Enviando...' : 'Enviar'}
         </Button>
       </div>
     </div>

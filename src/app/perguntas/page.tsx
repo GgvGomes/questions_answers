@@ -1,6 +1,7 @@
 'use client';
 
 import { Card_Perguntas } from '@/components/card_perguntas';
+import { Select_Recievers } from '@/components/select_recievers';
 import { questions } from '@/components/static_values';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -23,7 +24,7 @@ export default function Home() {
   const classSecondDivs = 'w-full flex justify-evenly gap-x-6';
 
   const [termo, setTermo] = useState('');
-  const [palestrante, setPalestrante] = useState('');
+  const [receiver, setReceiver] = useState('');
   const [status, setStatus] = useState('');
   const [anonimo, setAnonimo] = useState('');
 
@@ -35,7 +36,7 @@ export default function Home() {
     if (status === '0') statusBoolean = false;
     else if (status === '1') statusBoolean = true;
 
-    if(palestrante !== '') questionsFiltered = questionsFiltered.filter((item) => item.reciver.includes(palestrante));
+    if(receiver !== '') questionsFiltered = questionsFiltered.filter((item) => item.reciver.includes(receiver));
 
     if(status !== '') questionsFiltered = questionsFiltered.filter((item) => item.viewed == statusBoolean);
 
@@ -53,15 +54,7 @@ export default function Home() {
     // });
 
     return questionsFiltered;
-  }, [termo, palestrante, status, anonimo, questions]);
-
-  const callApi = useCallback(() => {
-    console.log('callApi')
-    api.get('/prompts').then((res:any) => {
-      console.log(res.data);
-    });
-  }, []);
-  useEffect(() => callApi, []);
+  }, [termo, receiver, status, anonimo, questions]);
 
   return (
     <div className={classAllDiv}>
@@ -78,19 +71,8 @@ export default function Home() {
 
         <div className={`${classDivLabel}`}>
           <Label>Selecione a quem foi destinada</Label>
-          <Select onValueChange={(e) => setPalestrante(e)}>
-            <SelectTrigger className="rounded-xl h-12 max-md:h-9 max-md:text-[10px]">
-              <SelectValue placeholder="Selecione um palestrante" />
-            </SelectTrigger>
-
-            <SelectContent>
-              <SelectItem value={''}>Mostrar todas opções</SelectItem>
-              <SelectItem value={'Todos'}>Para todos</SelectItem>
-              <SelectItem value={'Mauro Henrique'}>Mauro Henrique</SelectItem>
-              <SelectItem value={'Pastor Gustavo'}>Pastor Gustavo</SelectItem>
-              <SelectItem value={'Pastor Herley'}>Pastor Herley</SelectItem>
-            </SelectContent>
-          </Select>
+          
+          <Select_Recievers receiver={receiver} setReceiver={setReceiver} />
         </div>
 
         <div className={`${classDivLabel}`}>
