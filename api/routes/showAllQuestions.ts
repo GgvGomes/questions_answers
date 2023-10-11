@@ -3,8 +3,6 @@ import { prisma } from '../lib/prisma';
 
 export async function showAllQuestions(app: FastifyInstance) {
   app.get('/questions', async (request, reply) => {
-    const teste = 'Return all QUestions';
-
     const prompts = await prisma.questions.findMany({
       include: {
         reciver: {
