@@ -13,13 +13,15 @@ datasource db {
 model Questions {
   id          String   @id @default(cuid())
   question    String
-  transmitter String?
-  reciver     Int
   viewed      Boolean  @default(false)
   data        DateTime @default(now())
+  transmitter String?
+  reciverId   String
+  reciver     Recivers @relation(fields: [reciverId], references: [id])
 }
 
 model Recivers {
-  id   String @id @default(cuid())
-  name String
+  id        String      @id @default(cuid())
+  name      String
+  Questions Questions[]
 }
