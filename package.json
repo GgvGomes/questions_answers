@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "start npx tsx watch api/server.ts && start npx next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node api/server.js",
     "lint": "next lint"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   },
   "prisma": {
     "seed": "tsx api/prisma/seed.ts"
