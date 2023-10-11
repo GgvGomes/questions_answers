@@ -12,8 +12,53 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
+import { api } from '@/data/axios';
+import { useCallback, useEffect, useState } from 'react';
+
+interface Recivers {
+  name: string;
+  id: string;
+}
 
 export default function Home() {
+  const [transmitter, setTransmitter] = useState('');
+  const [receiver, setReceiver] = useState('clnlpooa20000ix74skqamv64');
+  const [question, setQuestion] = useState('');
+  const [disabled, setDisabled] = useState(false);
+
+  const [receivers, setReceivers] = useState<Recivers[]>([]);
+
+  const onSubmit = async () => {
+    setDisabled(true);
+
+    // Verificar se algum ta vazio
+    // Tlvz colocar o formulario
+
+    const result = await api.post('/question', {
+      transmitter,
+      reciverId: receiver,
+      question,
+    });
+
+    setTransmitter('');
+    setReceiver('');
+    setQuestion('');
+
+    alert('Finalizado' + result.data);
+
+    setDisabled(false);
+  };
+
+  const getRecivers = useCallback(async () => {
+    const result = await api.get('/recivers');
+
+    setReceivers(result.data);
+  }, [setReceivers]);
+
+  useEffect(() => {
+    getRecivers();
+  }, []);
+
   return (
     <div className="min-h-screen w-full flex justify-center items-center overflow-x-hidden">
       <div
@@ -43,6 +88,8 @@ export default function Home() {
             className="rounded-xl h-12 
                         max-md:h-9 max-md:text-[10px]"
             placeholder="Insira o seu nome aqui"
+            value={transmitter}
+            onChange={(e) => setTransmitter(e.target.value)}
           />
           <small className="block text-xs text-muted-foreground leading-relaxed max-sm:text-[8px]">
             Caso você não informe a pergunta será anônima
@@ -54,16 +101,15 @@ export default function Home() {
         <div className="space-y-2 flex flex-wrap w-full">
           <Label className="max-md:text-[12px]">Selecione para quem é a pergunta:</Label>
 
-          <Select>
+          <Select onValueChange={(e) => setReceiver(e)} value={receiver}>
             <SelectTrigger className="rounded-xl h-12 max-md:h-9 max-md:text-[10px]">
               <SelectValue placeholder="Selecione uma opção" />
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value={'1'}>Todos</SelectItem>
-              <SelectItem value={'2'}>Mauro Henrique</SelectItem>
-              <SelectItem value={'4'}>Pastor Gustavo</SelectItem>
-              <SelectItem value={'3'}>Pastor Herley</SelectItem>
+              {receivers?.map((item) => (
+                <SelectItem value={item.id}>{item.name}</SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -74,6 +120,8 @@ export default function Home() {
           <Label className="max-md:text-[12px]">Insira a sua pergunta:</Label>
 
           <Textarea
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
             className="resize-none p-4 leading-relaxed rounded-xl max-md:text-[10px]"
             placeholder="Insira sua pergunta..."
             rows={5}
@@ -81,8 +129,10 @@ export default function Home() {
         </div>
 
         <Button
+          // disabled={disabled}
+          onClick={onSubmit}
           variant="outline"
-          className="rounded-xl h-12 ml-auto px-12 text-lg text-green-700
+          className="rounded-xl h-12 ml-auto px-12 text-lg text-green-600
                   max-md:h-10 max-md:px-8 max-md:text-sm">
           Enviar
         </Button>
