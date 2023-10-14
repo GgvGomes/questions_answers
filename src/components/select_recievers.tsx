@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from './ui/select';
 import { api } from '@/data/axios';
+import { prisma } from '../../api/lib/prisma';
 
 interface SelectRecieversProps {
   receiver: string;
@@ -17,11 +18,20 @@ interface Recivers {
   id: string;
 }
 
+
+async function getReciversPrisma() {
+  'use server';
+  const recivers = await prisma.recivers.findMany();
+
+  return recivers;
+}
+
+
 export function Select_Recievers({ receiver, setReceiver }: SelectRecieversProps) {
   const [receivers, setReceivers] = useState<Recivers[]>([]);
   
   const getRecivers = useCallback(async () => {
-    const result = await api.get('/recivers');
+    const result = await getReciversPrisma();
 
     setReceivers(result.data);
   }, [setReceivers]);
