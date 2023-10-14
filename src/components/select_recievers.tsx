@@ -19,26 +19,26 @@ interface Recivers {
 }
 
 
-async function getReciversPrisma() {
-  'use server';
-  const recivers = await prisma.recivers.findMany();
+// async function getReciversPrisma() {
+//   'use server';
+//   const recivers = await prisma.recivers.findMany();
 
-  return recivers;
-}
+//   return recivers;
+// }
 
 
 export function Select_Recievers({ receiver, setReceiver }: SelectRecieversProps) {
   const [receivers, setReceivers] = useState<Recivers[]>([]);
   
-  const getRecivers = useCallback(async () => {
-    const result = await getReciversPrisma();
+  // const getRecivers = useCallback(async () => {
+  //   const result = await getReciversPrisma();
 
-    setReceivers(result.data);
-  }, [setReceivers]);
+  //   setReceivers(result.data);
+  // }, [setReceivers]);
 
-  useEffect(() => {
-    getRecivers();
-  }, []);
+  // useEffect(() => {
+  //   getRecivers();
+  // }, []);
 
   return (
     <Select onValueChange={(e) => setReceiver(e)} value={receiver}>

@@ -21,11 +21,11 @@ export default function Home() {
     // Verificar se algum ta vazio
     // Tlvz colocar o formulario
 
-    await api.post('/question', {
-      transmitter,
-      reciverId: receiver,
-      question,
-    });
+    // await api.post('/question', {
+    //   transmitter,
+    //   reciverId: receiver,
+    //   question,
+    // });
 
     setTransmitter('');
     setReceiver('clnlpooa20000ix74skqamv64');
