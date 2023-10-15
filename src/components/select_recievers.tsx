@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -6,8 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select';
-import { api } from '@/data/axios';
-import { prisma } from '../../api/lib/prisma';
+import prisma from '../lib/prisma';
 
 interface SelectRecieversProps {
   receiver: string;
@@ -18,18 +16,13 @@ interface Recivers {
   id: string;
 }
 
+export default async function Select_Recievers({
+  receiver,
+  setReceiver,
+}: SelectRecieversProps) {
+  const recivers: Recivers[] = await prisma.recivers.findMany();
+  // const [receivers, setReceivers] = useState<>([]);
 
-// async function getReciversPrisma() {
-//   'use server';
-//   const recivers = await prisma.recivers.findMany();
-
-//   return recivers;
-// }
-
-
-export function Select_Recievers({ receiver, setReceiver }: SelectRecieversProps) {
-  const [receivers, setReceivers] = useState<Recivers[]>([]);
-  
   // const getRecivers = useCallback(async () => {
   //   const result = await getReciversPrisma();
 
@@ -47,8 +40,10 @@ export function Select_Recievers({ receiver, setReceiver }: SelectRecieversProps
       </SelectTrigger>
 
       <SelectContent>
-        {receivers?.map((item) => (
-          <SelectItem value={item.id} key={item.id}>{item.name}</SelectItem>
+        {recivers?.map((item) => (
+          <SelectItem value={item.id} key={item.id}>
+            {item.name}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>

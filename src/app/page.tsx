@@ -1,13 +1,13 @@
 'use client';
 
-import { Select_Recievers } from '@/components/select_recievers';
+import { SelectPlaceholder } from '@/components/select_placeholder';
+import Select_Recievers from '@/components/select_recievers';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
-import { api } from '@/data/axios';
-import { useCallback, useState } from 'react';
+import { Suspense, useCallback, useState } from 'react';
 
 export default function Home() {
   const [transmitter, setTransmitter] = useState('');
@@ -88,7 +88,9 @@ export default function Home() {
         <div className="space-y-2 flex flex-wrap w-full">
           <Label className="max-md:text-[12px]">Selecione para quem é a pergunta:</Label>
 
-          <Select_Recievers receiver={receiver} setReceiver={setReceiver} />
+          <Suspense fallback={<SelectPlaceholder />}>
+            <Select_Recievers receiver={receiver} setReceiver={setReceiver} />
+          </Suspense>
         </div>
 
         <Separator />

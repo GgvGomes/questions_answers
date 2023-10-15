@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx next dev",
-    "build": "prisma generate && next build ** <actual-build-command>",
+    "dev": "prisma generate && next dev",
+    "build": "prisma generate && prisma db push && prisma db seed && next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
+    "lint": "next lint"
   },
   "engines": {
     "node": "18.x"
   },
   "prisma": {
-    "seed": "tsx api/prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@fastify/cors": "^8.4.0",
@@ -27,6 +26,7 @@
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-table": "^8.10.3",
+    "ts-node": "^10.9.1",
     "add": "^2.0.6",
     "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
