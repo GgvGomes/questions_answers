@@ -1,7 +1,7 @@
 'use client';
 
 import { Card_Perguntas } from '@/components/card_perguntas';
-import { Select_Recievers } from '@/components/select_recievers';
+import Select_Recievers from '@/components/select_recievers';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
