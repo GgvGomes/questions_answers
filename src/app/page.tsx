@@ -7,16 +7,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
-import prisma from '@/lib/prisma';
 import { Suspense, useCallback, useState } from 'react';
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const recivers = await prisma.recivers.findMany();
-  
-//   return { props: { recivers } }
-// };
-
-export default function Home() {
+export default async function Home() {
   const [transmitter, setTransmitter] = useState('');
   const [receiver, setReceiver] = useState('clnlpooa20000ix74skqamv64');
   const [question, setQuestion] = useState('');

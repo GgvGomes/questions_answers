@@ -6,6 +6,7 @@ import {
   SelectValue,
 } from './ui/select';
 import prisma from '../lib/prisma';
+import { useEffect } from 'react';
 interface Recivers {
   name: string;
   id: string;
@@ -26,18 +27,12 @@ export default async function Select_Recievers({
   receiver,
   setReceiver
 }: SelectRecieversProps) {
-  const recivers: Recivers[] = await getRecivers();
-  // const [receivers, setReceivers] = useState<>([]);
-
-  // const getRecivers = useCallback(async () => {
-  //   const result = await getReciversPrisma();
-
-  //   setReceivers(result.data);
-  // }, [setReceivers]);
+  
 
   // useEffect(() => {
-  //   getRecivers();
+  //   const recivers: Recivers[] = await getRecivers();
   // }, []);
+  // const recivers: Recivers[] = await prisma.recivers.findMany();
 
   return (
     <Select onValueChange={(e) => setReceiver(e)} value={receiver}>
@@ -46,11 +41,11 @@ export default async function Select_Recievers({
       </SelectTrigger>
 
       <SelectContent>
-        {recivers?.map((item) => (
+        {/* {recivers?.map((item) => (
           <SelectItem value={item.id} key={item.id}>
             {item.name}
           </SelectItem>
-        ))}
+        ))} */}
       </SelectContent>
     </Select>
   );
