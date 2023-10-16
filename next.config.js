@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['localhost', 'pbs.twimg.com'],
-    }
-}
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    swcMinify: true,
+    experimental: {
+        serverActions: true,
+    },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -6,8 +6,6 @@ import {
   SelectValue,
 } from './ui/select';
 import prisma from '../lib/prisma';
-import { GetStaticProps } from 'next';
-import App, { AppContext, AppInitialProps, AppProps } from 'next/app';
 interface Recivers {
   name: string;
   id: string;
@@ -16,21 +14,19 @@ interface Recivers {
 interface SelectRecieversProps {
   receiver: string;
   setReceiver: (e: string) => void;
-  // recivers?: Recivers[];
 }
 
-// export const getServerSideProps = async ({ req }) => { }
-// export const getStaticProps: GetStaticProps = async () => {
-//   const recivers = await prisma.recivers.findMany();
-  
-//   return { props: { recivers } }
-// };
+async function getRecivers() {
+  const recivers: Recivers[] = await prisma.recivers.findMany();
+
+  return recivers;
+}
 
 export default async function Select_Recievers({
   receiver,
   setReceiver
 }: SelectRecieversProps) {
-  const recivers: Recivers[] = await prisma.recivers.findMany();
+  const recivers: Recivers[] = await getRecivers();
   // const [receivers, setReceivers] = useState<>([]);
 
   // const getRecivers = useCallback(async () => {
