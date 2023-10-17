@@ -1,9 +1,9 @@
 import { Suspense, useMemo } from 'react';
-import { Card_Perguntas } from './card_perguntas';
 import { filterData } from '@/functions/filter';
-
-import { format } from 'date-fns';
 import { api } from '@/lib/axios';
+
+import { Card_Perguntas } from './card_perguntas';
+import { format } from 'date-fns';
 
 interface Question {
   reciver: {
@@ -44,7 +44,7 @@ export async function ContentCards({
   }, []);
 
   // Sempre ordenar da menor data p/ a maior
-  const questionsMemo = useMemo(() => {
+  const questionsMemo = (() => {
     let questionsFiltered = filterData(questions, termo);
 
     let statusBoolean = false;
@@ -80,7 +80,7 @@ export async function ContentCards({
       question: item.question,
       viewed: item.viewed,
     }));
-  }, [termo, receiver, status, anonimo, questions]);
+  })();
 
   return (
     <>
