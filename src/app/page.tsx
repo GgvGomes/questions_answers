@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
+import { api } from '@/lib/axios';
 import { Suspense, useCallback, useState } from 'react';
 
 export default function Home() {
@@ -21,11 +22,11 @@ export default function Home() {
     // Verificar se algum ta vazio
     // Tlvz colocar o formulario
 
-    // await api.post('/question', {
-    //   transmitter,
-    //   reciverId: receiver,
-    //   question,
-    // });
+    await api.post('/question', {
+      transmitter,
+      reciverId: receiver,
+      question,
+    });
 
     setTransmitter('');
     setReceiver('clnlpooa20000ix74skqamv64');

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   Select,
   SelectContent,
@@ -26,8 +27,9 @@ export default async function Select_Recievers({
   receiver,
   setReceiver,
 }: SelectRecieversProps) {
-  'use client';
-  const recivers: Recivers[] = await getRecivers();
+  const recivers: Recivers[] = await useMemo(() => {
+    return getRecivers();
+  }, []);
 
   return (
     <Select onValueChange={(e) => setReceiver(e)} value={receiver}>
