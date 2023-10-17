@@ -20,7 +20,11 @@ export default function Home() {
   return (
     <div className={classAllDiv}>
       {/* Filtro */}
-      <div className={classSecondDivs}>{FilterTableComponent}</div>
+      <div className={classSecondDivs}>
+        <Suspense fallback={<div>Carregando Increment...</div>}>
+          {FilterTableComponent}
+        </Suspense>
+      </div>
 
       <Suspense fallback={<div>Carregando...</div>}>
         <ContentCards {...contentCardProps} />
