@@ -9,9 +9,9 @@ import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { Suspense, useCallback, useState } from 'react';
 
-export default async function Home() {
+export default function Home() {
   const [transmitter, setTransmitter] = useState('');
-  const [receiver, setReceiver] = useState('clnlpooa20000ix74skqamv64');
+  const [receiver, setReceiver] = useState('clnrxxkcx0000l57c7bb4akly');
   const [question, setQuestion] = useState('');
   const [disabled, setDisabled] = useState(false);
 

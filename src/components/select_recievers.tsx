@@ -5,8 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select';
-import prisma from '../lib/prisma';
-import { useEffect } from 'react';
+import { api } from '@/lib/axios';
 interface Recivers {
   name: string;
   id: string;
@@ -18,21 +17,17 @@ interface SelectRecieversProps {
 }
 
 async function getRecivers() {
-  const recivers: Recivers[] = await prisma.recivers.findMany();
+  const response = await api.get('/recivers').then((res) => res.data);
 
-  return recivers;
+  return response;
 }
 
 export default async function Select_Recievers({
   receiver,
-  setReceiver
+  setReceiver,
 }: SelectRecieversProps) {
-  
-
-  // useEffect(() => {
-  //   const recivers: Recivers[] = await getRecivers();
-  // }, []);
-  // const recivers: Recivers[] = await prisma.recivers.findMany();
+  'use client';
+  const recivers: Recivers[] = await getRecivers();
 
   return (
     <Select onValueChange={(e) => setReceiver(e)} value={receiver}>
@@ -41,21 +36,12 @@ export default async function Select_Recievers({
       </SelectTrigger>
 
       <SelectContent>
-        {/* {recivers?.map((item) => (
+        {recivers?.map((item) => (
           <SelectItem value={item.id} key={item.id}>
             {item.name}
           </SelectItem>
-        ))} */}
+        ))}
       </SelectContent>
     </Select>
   );
 }
-
-// Select_Recievers.getInitialProps = async (
-//   context: AppContext
-// ): Promise<SelectRecieversProps & AppInitialProps> => {
-//   const ctx = await App.getInitialProps(context)
-//   const recivers = await prisma.recivers.findMany();
-
-//   return { ...ctx }
-// }
