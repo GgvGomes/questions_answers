@@ -37,10 +37,11 @@ export async function ContentCards({
   status,
   termo,
 }: ContentCardsProps) {
+  const classSecondDivs = 'w-full flex justify-evenly gap-x-6';
+  
   const questions: Question[] = await useMemo(() => {
     return getQuestionsBd();
   }, []);
-  // const questions: Question[] = await getQuestionsBd();
 
   // Sempre ordenar da menor data p/ a maior
   const questionsMemo = useMemo(() => {
@@ -80,8 +81,6 @@ export async function ContentCards({
       viewed: item.viewed,
     }));
   }, [termo, receiver, status, anonimo, questions]);
-
-  const classSecondDivs = 'w-full flex justify-evenly gap-x-6';
 
   return (
     <>
