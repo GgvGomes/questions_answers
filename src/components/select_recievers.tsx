@@ -27,9 +27,10 @@ export default async function Select_Recievers({
   receiver,
   setReceiver,
 }: SelectRecieversProps) {
-  const recivers: Recivers[] = await useMemo(() => {
-    return getRecivers();
-  }, []);
+  // const recivers: Recivers[] = await useMemo(() => {
+  //   return getRecivers();
+  // }, []);
+  const recivers: Recivers[] = await getRecivers();
 
   return (
     <Select onValueChange={(e) => setReceiver(e)} value={receiver}>

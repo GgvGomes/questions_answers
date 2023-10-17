@@ -1,9 +1,9 @@
 'use client';
 
-import { api } from '@/data/axios';
 import { useCallback, useState } from 'react';
 import { EyeIcon, LucideVerified, Copy } from 'lucide-react';
 import { Separator } from './ui/separator';
+// import { api } from '@/lib/axios';
 
 interface Question {
   id: number;
@@ -28,14 +28,15 @@ export function Card_Perguntas({
     navigator.clipboard.writeText('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 
   const changeView = useCallback(
-    async (visualizado: boolean) => {
-      await api.post(`/view/${id}`, { viewed: visualizado }).then((res) => {
-        console.log(res.data);
+    (visualizado: boolean) => {},
+    // async (visualizado: boolean) => {
+    //   await api.post(`/view/${id}`, { viewed: visualizado }).then((res) => {
+    //     console.log(res.data);
 
-        alert('Visualização alterada com sucesso!');
-        setVisualizado(visualizado);
-      });
-    },
+    //     alert('Visualização alterada com sucesso!');
+    //     setVisualizado(visualizado);
+    //   });
+    // },
     [setVisualizado, visualizado]
   );
 
