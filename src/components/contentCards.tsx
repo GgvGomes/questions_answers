@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { filterData } from '@/functions/filter';
 import { api } from '@/lib/axios';
 
@@ -39,13 +39,15 @@ export async function ContentCards({
 }: ContentCardsProps) {
   const classSecondDivs = 'w-full flex justify-evenly gap-x-6';
 
-  const questions: Question[] = await getQuestionsBd();
-  // const questions: Question[] = await useMemo(() => {
-  //   return getQuestionsBd();
-  // }, []);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  useEffect(() => {
+    getQuestionsBd()
+      .then((res) => setQuestions(res))
+      .catch((err) => console.log(err));
+  }, []);
 
   // Sempre ordenar da menor data p/ a maior
-  const questionsMemo = (() => {
+  const questionsMemo = useMemo(() => {
     let questionsFiltered = filterData(questions, termo);
 
     let statusBoolean = false;
@@ -82,7 +84,7 @@ export async function ContentCards({
       viewed: item.viewed,
       key: item.id,
     }));
-  })();
+  }, [questions, termo, receiver, status, anonimo]);
 
   return (
     <>

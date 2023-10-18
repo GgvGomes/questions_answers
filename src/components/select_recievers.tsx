@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -27,12 +27,15 @@ export default async function Select_Recievers({
   receiver,
   setReceiver,
 }: SelectRecieversProps) {
-  const recivers: Recivers[] = await useMemo(() => {
-    return getRecivers();
-  }, []);
-  // const recivers: Recivers[] = await useCallback(() => {
-  //   return  getRecivers()
+  // const recivers: Recivers[] = await useMemo(() => {
+  //   return getRecivers();
   // }, []);
+  const [recivers, setRecivers] = useState<Recivers[]>([]);
+  useEffect(() => {
+    getRecivers()
+      .then((res) => setRecivers(res))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Select onValueChange={(e) => setReceiver(e)} value={receiver}>

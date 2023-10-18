@@ -29,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useEffect, useState } from 'react';
 
 async function getRecivers() {
   const response = await api.get('/recivers').then((res) => res.data);
@@ -36,11 +37,6 @@ async function getRecivers() {
   return response;
 }
 
-interface SendQuestionProps {
-  transmitter: string;
-  receiver: string;
-  question: string;
-}
 const formSchema = z.object({
   transmitter: z.string(),
   receiver: z.string().min(2, {
@@ -84,6 +80,14 @@ export default function Home() {
     console.log(values);
   }
 
+  const [recivers, setRecivers] = useState<Recivers[]>([]);
+  useEffect(() => {
+    getRecivers()
+      .then((res) => {
+        setRecivers(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   // const recivers: Recivers[] = await getRecivers();
 
   return (
@@ -147,13 +151,13 @@ export default function Home() {
                       </SelectTrigger>
 
                       <SelectContent>
-                        {/* {recivers?.map((item) => (
-                            <SelectItem value={item.id} key={item.id}>
-                              {item.name}
-                            </SelectItem>
-                          ))} */}
-                        <SelectItem value={'clnlpooa20000ix74skqamv64'}>Todos</SelectItem>
-                        <SelectItem value={'Mauro'}>Mauro Henrique</SelectItem>
+                        {recivers?.map((item) => (
+                          <SelectItem value={item.id} key={item.id}>
+                            {item.name}
+                          </SelectItem>
+                        ))}
+                        {/* <SelectItem value={'clnlpooa20000ix74skqamv64'}>Todos</SelectItem>
+                        <SelectItem value={'Mauro'}>Mauro Henrique</SelectItem> */}
                       </SelectContent>
                     </Select>
                   </FormControl>
