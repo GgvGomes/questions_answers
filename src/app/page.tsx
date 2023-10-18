@@ -48,7 +48,6 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
-
 async function SendQuestion({ transmitter, receiver, question }: FormValues) {
   const response = await api.post('/question', {
     transmitter,
@@ -58,7 +57,6 @@ async function SendQuestion({ transmitter, receiver, question }: FormValues) {
 
   console.log(response);
 }
-
 interface Recivers {
   name: string;
   id: string;
@@ -78,17 +76,16 @@ export default function Home() {
     SendQuestion(values);
 
     console.log(values);
+    alert('Sua Pergunta foi enviada!');
+    form.reset();
   }
 
   const [recivers, setRecivers] = useState<Recivers[]>([]);
   useEffect(() => {
     getRecivers()
-      .then((res) => {
-        setRecivers(res.data);
-      })
+      .then((res) => setRecivers(res.data))
       .catch((err) => console.log(err));
   }, []);
-  // const recivers: Recivers[] = await getRecivers();
 
   return (
     <div className="min-h-screen h-full w-full flex justify-center items-center overflow-x-hidden">
