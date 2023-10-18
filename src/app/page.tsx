@@ -79,7 +79,7 @@ export default function Home() {
 
   // 2. Define a submit handler.
   function onSubmit(values: FormValues) {
-    // SendQuestion(values);
+    SendQuestion(values);
 
     console.log(values);
   }
