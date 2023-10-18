@@ -87,9 +87,9 @@ export default function Home() {
   // const recivers: Recivers[] = await getRecivers();
 
   return (
-    <div className="min-h-screen w-full flex justify-center items-center overflow-x-hidden">
+    <div className="min-h-screen h-full w-full flex justify-center items-center overflow-x-hidden">
       <div
-        className="w-[40rem] flex flex-wrap overflow-x-hidden px-1
+        className="w-[40rem] h-full max-h-[100%] flex flex-wrap overflow-x-hidden px-1
           max-md:w-80 max-md:space-y-3">
         <div className="mb-20 text-center w-full max-sm:mb-4">
           <h1
@@ -109,7 +109,7 @@ export default function Home() {
         </div>
 
         <Form {...form}>
-          <form className="w-full space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="w-full space-y-6 grid" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="transmitter"
@@ -119,7 +119,7 @@ export default function Home() {
                   <FormControl>
                     <Input
                       className="rounded-xl h-12 
-                        max-md:h-9 max-md:text-[10px]"
+                        max-md:h-10 max-md:text-[12px]"
                       placeholder="Insira o seu nome aqui"
                       {...field}
                     />
@@ -142,7 +142,7 @@ export default function Home() {
                   <FormLabel>Selecione para quem é a pergunta:</FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className="rounded-xl h-12 max-md:h-9 max-md:text-[10px]">
+                      <SelectTrigger className="rounded-xl h-12 max-md:h-10 max-md:text-[12px]">
                         <SelectValue placeholder="Selecione uma opção" />
                       </SelectTrigger>
 
@@ -173,7 +173,7 @@ export default function Home() {
                   <FormControl>
                     <Textarea
                       {...field}
-                      className="resize-none p-4 leading-relaxed rounded-xl max-md:text-[10px]"
+                      className="resize-none p-4 leading-relaxed rounded-xl max-md:text-[12px]"
                       placeholder="Insira sua pergunta..."
                       rows={5}
                     />
@@ -187,8 +187,8 @@ export default function Home() {
               type="submit"
               variant="outline"
               disabled={form.formState.isSubmitting}
-              className="rounded-xl h-12 ml-auto px-12 text-lg text-green-600
-                  max-md:h-10 max-md:px-8 max-md:text-sm transition-all">
+              className="rounded-xl h-12 ml-auto self-end px-12 text-lg text-green-600
+                  max-md:h-11 max-md:px-8 max-md:text-[16px] transition-all">
               {form.formState.isSubmitting ? 'Enviando...' : 'Enviar'}
             </Button>
           </form>
