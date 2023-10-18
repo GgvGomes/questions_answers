@@ -38,10 +38,11 @@ export async function ContentCards({
   termo,
 }: ContentCardsProps) {
   const classSecondDivs = 'w-full flex justify-evenly gap-x-6';
-  
-  const questions: Question[] = await useMemo(() => {
-    return getQuestionsBd();
-  }, []);
+
+  const questions: Question[] = await getQuestionsBd();
+  // const questions: Question[] = await useMemo(() => {
+  //   return getQuestionsBd();
+  // }, []);
 
   // Sempre ordenar da menor data p/ a maior
   const questionsMemo = (() => {
@@ -79,6 +80,7 @@ export async function ContentCards({
       transmitter: item.transmitter,
       question: item.question,
       viewed: item.viewed,
+      key: item.id,
     }));
   })();
 
@@ -86,11 +88,11 @@ export async function ContentCards({
     <>
       <div
         className={`${classSecondDivs} px-4 py-2 h-[80vh] max-h-[80vh] overflow-auto flex-wrap gap-y-3 content-start`}>
-        {questionsMemo.map((item, i) => (
-          <Suspense fallback={<div>Carregando...</div>}>
+        <Suspense fallback={<div>Carregando...</div>}>
+          {questionsMemo.map((item, i) => (
             <Card_Perguntas {...item} key={i} />
-          </Suspense>
-        ))}
+          ))}
+        </Suspense>
       </div>
 
       <small className="ml-auto text-muted-foreground font-semibold">
