@@ -1,9 +1,11 @@
 'use client'
 
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 
 import { ContentCards } from '@/components/contentCards';
 import { FilterTable } from '@/components/filterTable';
+
+import '../globals.css'
 
 export default function Home() {
   const classAllDiv =

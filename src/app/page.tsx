@@ -1,52 +1,90 @@
 'use client';
 
 import { SelectPlaceholder } from '@/components/select_placeholder';
-import Select_Recievers from '@/components/select_recievers';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { api } from '@/lib/axios';
-import { FormEventHandler, Suspense, useCallback, useState } from 'react';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
+import './globals.css';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+async function getRecivers() {
+  const response = await api.get('/recivers').then((res) => res.data);
+
+  return response;
+}
+
+interface SendQuestionProps {
+  transmitter: string;
+  receiver: string;
+  question: string;
+}
+const formSchema = z.object({
+  transmitter: z.string(),
+  receiver: z.string().min(2, {
+    message: 'Selecione uma opção.',
+  }),
+  question: z.string().min(2, {
+    message: 'Insira alguma pergunta.',
+  }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+async function SendQuestion({ transmitter, receiver, question }: FormValues) {
+  const response = await api.post('/question', {
+    transmitter,
+    reciverId: receiver,
+    question,
+  });
+
+  console.log(response);
+}
+
+interface Recivers {
+  name: string;
+  id: string;
+}
 
 export default function Home() {
-  const [transmitter, setTransmitter] = useState('');
-  const [receiver, setReceiver] = useState('clnrxxkcx0000l57c7bb4akly');
-  const [question, setQuestion] = useState('');
-  const [disabled, setDisabled] = useState(false);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      transmitter: '',
+      question: '',
+    },
+  });
 
-  const onSubmit:FormEventHandler<HTMLFormElement> = useCallback(async (e) => {
-    e.preventDefault();
-    setDisabled(true);
+  // 2. Define a submit handler.
+  function onSubmit(values: FormValues) {
+    // SendQuestion(values);
 
-    // Verificar se algum ta vazio
-    // Tlvz colocar o formulario
+    console.log(values);
+  }
 
-    await api.post('/question', {
-      transmitter,
-      reciverId: receiver,
-      question,
-    });
-
-    setTransmitter('');
-    setReceiver('clnlpooa20000ix74skqamv64');
-    setQuestion('');
-
-    alert('Sua pergunta foi enviada com sucesso!');
-
-    setTimeout(() => {
-      setDisabled(false);
-    }, 500);
-  }, [
-    transmitter,
-    receiver,
-    question,
-    setDisabled,
-    setTransmitter,
-    setReceiver,
-    setQuestion,
-  ]);
+  // const recivers: Recivers[] = await getRecivers();
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center overflow-x-hidden">
@@ -70,62 +108,91 @@ export default function Home() {
           </h2>
         </div>
 
-        {/* Colocar o form do shadCnUi */}
-        <form className="w-full space-y-6" onSubmit={onSubmit}>
-          <div className="space-y-2 flex flex-wrap w-full">
-            <Label className="max-md:text-[12px]">Insira o seu nome:</Label>
-
-            <Input
-              className="rounded-xl h-12 
+        <Form {...form}>
+          <form className="w-full space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="transmitter"
+              render={({ field }) => (
+                <FormItem className="space-y-2 flex flex-wrap w-full">
+                  <FormLabel>Insira o seu nome:</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="rounded-xl h-12 
                         max-md:h-9 max-md:text-[10px]"
-              placeholder="Insira o seu nome aqui"
-              value={transmitter}
-              name='transmitter'
-              onChange={(e) => setTransmitter(e.target.value)}
+                      placeholder="Insira o seu nome aqui"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Caso você não informe a pergunta será anônima
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            <small className="block text-xs text-muted-foreground leading-relaxed max-sm:text-[8px]">
-              Caso você não informe a pergunta será anônima
-            </small>
-          </div>
 
-          <Separator />
+            <Separator />
 
-          <div className="space-y-2 flex flex-wrap w-full">
-            <Label className="max-md:text-[12px]">
-              Selecione para quem é a pergunta:
-            </Label>
+            <FormField
+              control={form.control}
+              name="receiver"
+              render={({ field }) => (
+                <FormItem className="space-y-2 flex flex-wrap w-full">
+                  <FormLabel>Selecione para quem é a pergunta:</FormLabel>
+                  <FormControl>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <SelectTrigger className="rounded-xl h-12 max-md:h-9 max-md:text-[10px]">
+                        <SelectValue placeholder="Selecione uma opção" />
+                      </SelectTrigger>
 
-            {/* <Suspense fallback={<SelectPlaceholder />}>
-              <Select_Recievers receiver={receiver} setReceiver={setReceiver} />
-            </Suspense> */}
-            <SelectPlaceholder />
-          </div>
-
-          <Separator />
-
-          <div className="space-y-2 flex flex-wrap w-full">
-            <Label className="max-md:text-[12px]">Insira a sua pergunta:</Label>
-
-            <Textarea
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              className="resize-none p-4 leading-relaxed rounded-xl max-md:text-[10px]"
-              placeholder="Insira sua pergunta..."
-              rows={5}
+                      <SelectContent>
+                        {/* {recivers?.map((item) => (
+                            <SelectItem value={item.id} key={item.id}>
+                              {item.name}
+                            </SelectItem>
+                          ))} */}
+                        <SelectItem value={'clnlpooa20000ix74skqamv64'}>Todos</SelectItem>
+                        <SelectItem value={'Mauro'}>Mauro Henrique</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <Button
-            // disabled={disabled}
-            type='submit'
-            // onClick={onSubmit}
-            variant="outline"
-            className="rounded-xl h-12 ml-auto px-12 text-lg text-green-600
+            <Separator />
+
+            <FormField
+              control={form.control}
+              name="question"
+              render={({ field }) => (
+                <FormItem className="space-y-2 flex flex-wrap w-full">
+                  <FormLabel>Insira a sua pergunta:</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      className="resize-none p-4 leading-relaxed rounded-xl max-md:text-[10px]"
+                      placeholder="Insira sua pergunta..."
+                      rows={5}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button
+              type="submit"
+              variant="outline"
+              disabled={form.formState.isSubmitting}
+              className="rounded-xl h-12 ml-auto px-12 text-lg text-green-600
                   max-md:h-10 max-md:px-8 max-md:text-sm transition-all">
-            {disabled ? 'Enviando...' : 'Enviar'}
-          </Button>
-        </form>
-
+              {form.formState.isSubmitting ? 'Enviando...' : 'Enviar'}
+            </Button>
+          </form>
+        </Form>
       </div>
     </div>
   );
