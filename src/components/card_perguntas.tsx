@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { EyeIcon, LucideVerified, Copy } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { api } from '@/lib/axios';
@@ -24,6 +24,8 @@ export function Card_Perguntas({
   id,
 }: Question) {
   const [visualizado, setVisualizado] = useState(viewed);
+
+  useEffect(() => {setVisualizado(viewed)}, [viewed]);
 
   const copyToClipboard = () =>
     navigator.clipboard.writeText('https://www.youtube.com/watch?v=dQw4w9WgXcQ');

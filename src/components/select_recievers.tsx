@@ -44,6 +44,7 @@ export default async function Select_Recievers({
       </SelectTrigger>
 
       <SelectContent>
+        <SelectItem value={''}>Vizualizar tudo</SelectItem>
         {recivers?.map((item) => (
           <SelectItem value={item.id} key={item.id}>
             {item.name}

@@ -56,7 +56,7 @@ export async function ContentCards({
 
     if (receiver !== '')
       questionsFiltered = questionsFiltered.filter((item) =>
-        item.reciver.includes(receiver)
+        item.reciverId == receiver
       );
 
     if (status !== '')
