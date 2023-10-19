@@ -33,6 +33,7 @@ import { useEffect, useState } from 'react';
 
 async function getRecivers() {
   const response = await api.get('/recivers').then((res) => res.data);
+  console.log(response);
 
   return response;
 }
@@ -83,9 +84,12 @@ export default function Home() {
   const [recivers, setRecivers] = useState<Recivers[]>([]);
   useEffect(() => {
     getRecivers()
-      .then((res) => setRecivers(res.data))
+      .then((res) => {
+        setRecivers(res);
+      })
       .catch((err) => console.log(err));
   }, []);
+  console.log(recivers);
 
   return (
     <div className="min-h-screen h-full w-full flex justify-center items-center overflow-x-hidden">
@@ -153,8 +157,6 @@ export default function Home() {
                             {item.name}
                           </SelectItem>
                         ))}
-                        {/* <SelectItem value={'clnlpooa20000ix74skqamv64'}>Todos</SelectItem>
-                        <SelectItem value={'Mauro'}>Mauro Henrique</SelectItem> */}
                       </SelectContent>
                     </Select>
                   </FormControl>
