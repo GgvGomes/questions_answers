@@ -28,7 +28,7 @@ export function Card_Perguntas({
   useEffect(() => {setVisualizado(viewed)}, [viewed]);
 
   const copyToClipboard = () =>
-    navigator.clipboard.writeText('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+    navigator.clipboard.writeText(question);
 
   const changeView = useCallback(
     async (visualizado: boolean) => {
