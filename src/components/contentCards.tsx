@@ -89,7 +89,7 @@ export async function ContentCards({
   return (
     <>
       <div
-        className={`${classSecondDivs} px-4 py-2 h-[80vh] max-h-[80vh] overflow-auto flex-wrap gap-y-3 content-start`}>
+        className={`container ${classSecondDivs} px-4 py-2 h-[80vh] max-h-[80vh] overflow-auto flex-wrap gap-y-3 content-start`}>
         <Suspense fallback={<div>Carregando...</div>}>
           {questionsMemo.map((item, i) => (
             <Card_Perguntas {...item} key={i} />
