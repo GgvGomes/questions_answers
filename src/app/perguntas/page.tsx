@@ -1,10 +1,9 @@
 'use client'
 
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 
 import { ContentCards } from '@/components/contentCards';
 import { FilterTable } from '@/components/filterTable';
-import { Modal } from '@/components/modal';
 
 import '../globals.css'
 
@@ -22,16 +21,8 @@ export default function Home() {
     anonimo,
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalProps = {
-    isModalOpen,
-    setIsModalOpen,
-    text: 'Sua pergunta foi enviada com sucesso!',
-  };
-
   return (
     <div className={classAllDiv}>
-      <Modal {...modalProps} />
       {/* Filtro */}
       <div className={classSecondDivs+ ' container'}>
         <Suspense fallback={<div>Carregando Increment...</div>}>
