@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useEffect, useState } from 'react';
+import { Modal } from '@/components/modal';
 
 async function getRecivers() {
   const response = await api.get('/recivers').then((res) => res.data);
@@ -77,7 +78,7 @@ export default function Home() {
     SendQuestion(values);
 
     console.log(values);
-    alert('Sua Pergunta foi enviada!');
+    setIsModalOpen(true);
     form.reset();
   }
 
@@ -91,10 +92,18 @@ export default function Home() {
   }, []);
   console.log(recivers);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalProps = {
+    isModalOpen,
+    setIsModalOpen,
+    text: 'Sua pergunta foi enviada com sucesso!',
+  };
+
   return (
     <div className="min-h-screen h-full w-full flex justify-center items-center overflow-x-hidden">
+      <Modal {...modalProps} />
       <div
-        className="w-[40rem] h-full max-h-[100%] flex flex-wrap overflow-x-hidden px-1
+        className="container w-[40rem] h-full max-h-[100%] flex flex-wrap overflow-x-hidden px-1
           max-md:w-80 max-md:space-y-3">
         <div className="mb-20 text-center w-full max-sm:mb-4">
           <h1
