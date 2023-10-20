@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { EyeIcon, LucideVerified, Copy } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { api } from '@/lib/axios';
@@ -53,7 +53,7 @@ export function Card_Perguntas({
 
   return (
     <>
-      <Modal {...modalProps} />
+    <Modal {...modalProps} />
 
       <div className="border-solid border-[2px] border-zinc-600 w-full h-[28%] rounded-xl p-4">
         <div

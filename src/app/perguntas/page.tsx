@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div className={classAllDiv}>
       {/* Filtro */}
-      <div className={classSecondDivs+ ' container'}>
+      <div className={classSecondDivs}>
         <Suspense fallback={<div>Carregando Increment...</div>}>
           {FilterTableComponent}
         </Suspense>

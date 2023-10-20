@@ -4,6 +4,7 @@ import { api } from '@/lib/axios';
 
 import { Card_Perguntas } from './card_perguntas';
 import { format } from 'date-fns';
+import { Modal } from './modal';
 
 interface Question {
   reciver: {
@@ -86,10 +87,13 @@ export async function ContentCards({
     }));
   }, [questions, termo, receiver, status, anonimo]);
 
+  
+
+  
   return (
     <>
       <div
-        className={`container ${classSecondDivs} px-4 py-2 h-[80vh] max-h-[80vh] w-full overflow-auto flex-wrap gap-y-3 content-start`}>
+        className={`${classSecondDivs} px-4 py-2 h-[80vh] max-h-[80vh] w-full overflow-auto flex-wrap gap-y-3 content-start`}>
         <Suspense fallback={<div>Carregando...</div>}>
           {questionsMemo.map((item, i) => (
             <Card_Perguntas {...item} key={i} />
