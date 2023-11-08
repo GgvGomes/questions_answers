@@ -27,7 +27,7 @@ If you need something similar, feel free to use it.
 ![image](https://github.com/GgvGomes/questions_answers/assets/80273727/f737bee7-99a5-422d-a06c-40c6dcf43cbf)
 
 ## Mobile
-<div style="display: flex">
+<div style="display: flex; width: 100%">
 	<img src="https://github.com/GgvGomes/questions_answers/assets/80273727/bb12d6b0-90fe-4154-8781-813b2f93234f" alt="" style="margin: auto" />	
 </div>
 
