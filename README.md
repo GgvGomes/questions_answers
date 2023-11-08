@@ -46,7 +46,7 @@ it's hosted at this [url](https://perguntas-congresso.vercel.app);
  <a href="#tecnologias">Front-end</a> • 
   <a href="#licenc-a">Tailwind</a> • 
  <a href="#licenc-a">TypeScript</a> • 
-  <a href="#licenc-a">Prisma</a> • 
+  <a href="#licenc-a">Prisma</a> 
 </p>
 <p align="center">
 	<a href="#autor">Mrs. Gomes</a>
