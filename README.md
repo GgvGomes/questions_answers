@@ -16,21 +16,44 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## About the project
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The project was created to be used at a conference (in this case it was a church), the idea was that people could ask questions to the speakers quickly and easily. It's worth noting that the idea worked really well.
+This part of the project is just the front-end, the back-end was created in a separate partition for security and management reasons.
+As the idea of ​​the project is to help the public, it is 📱responsive📱! At least in terms of asking questions. They can only be viewed on a computer, in this case we use the computer of the person who was featured in the media.
+If you need something similar, feel free to use it.
 
-## Learn More
+## General Vision
+![image](https://github.com/GgvGomes/questions_answers/assets/80273727/f737bee7-99a5-422d-a06c-40c6dcf43cbf)
 
-To learn more about Next.js, take a look at the following resources:
+## Mobile
+<p align="center">
+	<img src="https://github.com/GgvGomes/questions_answers/assets/80273727/bb12d6b0-90fe-4154-8781-813b2f93234f" alt="" style="margin: auto" />	
+</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Viewing the Questions
+![image](https://github.com/GgvGomes/questions_answers/assets/80273727/bd7fa1b4-a3c3-4aee-aa87-2b3ce3f36422)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Finally
 
-## Deploy on Vercel
+This app was built with NextJs 13, Tailwind, TypeScript, Prisma.
+it's hosted at this [url](https://perguntas-congresso.vercel.app);
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<p align="center">
+ <a href="#roadmap">React</a> • 
+  <a href="#licenc-a">Vercel</a> • 
+ <a href="#contribuicao">Next Js</a> • 
+ <a href="#tecnologias">Front-end</a> • 
+  <a href="#licenc-a">Tailwind</a> • 
+ <a href="#licenc-a">TypeScript</a> • 
+  <a href="#licenc-a">Prisma</a> 
+</p>
+<p align="center">
+	<a href="#autor">Mrs. Gomes</a>
+</p>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<br/><br/>
+<h4 align="center"> 
+	 React Application 🚀🔥
+</h4>
+
