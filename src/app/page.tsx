@@ -111,7 +111,7 @@ export default function Home() {
               text-5xl font-bold text-green-500 
               max-md:text-4xl
             ">
-            Congresso - Crer é Pensar
+            Congresso - Segunda Igreja Presbiteriana
           </h1>
           <h2
             className="
